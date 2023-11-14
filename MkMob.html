@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <style>
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      select {
+        font-size: 24px;
+        padding: 12px;
+      }
+      button {
+        font-size: 24px;
+        padding: 12px;
+      }
+      div {
+        font-size: 30px;
+      }
+    </style>
+
+    <script>
+      let easy = [1000, 2000, 3000, 4000, 5000];
+      let normal = [2500, 4750, 7000, 9250, 11500, 13750, 16000];
+      let hard = [4000, 6500, 9000, 11500, 14000, 16500, 19000, 21500, 24000];
+      let fatal = [
+        7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000, 27500, 30000,
+        32500, 35000,
+      ];
+      let elder = [
+        9000, 12500, 16000, 19500, 23000, 26500, 30000, 33500, 37000, 40500,
+        44000, 47500, 51000, 54500, 58000,
+      ];
+
+      let modes = [easy, normal, hard, fatal, elder];
+
+      function clickFunc() {
+        let player = [
+          Number(document.getElementById("p1-bonus").value),
+          Number(document.getElementById("p2-bonus").value),
+          Number(document.getElementById("p3-bonus").value),
+        ];
+
+        let currModeArr =
+          modes[Number(document.getElementById("battle-mode").value)];
+
+        let isMaxed;
+        player[0] + player[1] + player[2] > 7
+          ? (isMaxed = true)
+          : (isMaxed = false);
+
+        let totalBonus = 1;
+        for (let i = 0; i < 3; i++) {
+          if (player[i] != 0) {
+            totalBonus = totalBonus * player[i];
+          }
+        }
+
+        if (totalBonus == 1) {
+          totalBonus = 0;
+        } else {
+          totalBonus = totalBonus - 1;
+        }
+        if (isMaxed) {
+          totalBonus = 9;
+        }
+        let finalPoints = 0;
+
+        currModeArr.forEach((ele) => {
+          finalPoints = finalPoints + ele + ele * totalBonus;
+        });
+
+        document.getElementById("final-txt").innerText =
+          Math.floor(finalPoints);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <header>
+        <select id="battle-mode">
+          <option value="0">EASY</option>
+          <option value="1">NORMAL</option>
+          <option value="2">HARD</option>
+          <option value="3">FATAL</option>
+          <option value="4">ELDER</option>
+        </select>
+      </header>
+      <header>
+        <select id="p1-bonus">
+          <option value="0">x0</option>
+          <option value="1.6">x1.6</option>
+          <option value="3">x3</option>
+          <option value="5">x5</option>
+        </select>
+        <select id="p2-bonus">
+          <option value="0">x0</option>
+          <option value="1.6">x1.6</option>
+          <option value="3">x3</option>
+          <option value="5">x5</option>
+        </select>
+        <select id="p3-bonus">
+          <option value="0">x0</option>
+          <option value="1.6">x1.6</option>
+          <option value="3">x3</option>
+          <option value="5">x5</option>
+        </select>
+      </header>
+      <header>
+        <button onclick="clickFunc()">CALCULATE</button>
+      </header>
+      <header>
+        <div id="final-txt"></div>
+      </header>
+    </div>
+  </body>
+</html>
