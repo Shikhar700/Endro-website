@@ -6,15 +6,25 @@
         margin-bottom: 20px;
       }
       select {
-        font-size: 24px;
+        font-size: 40px;
         padding: 12px;
+        width: 294px;
+        text-align: center;
+      }
+      #battle-mode {
+        width: 900px;
+        text-align: center;
       }
       button {
-        font-size: 24px;
+        font-size: 40px;
         padding: 12px;
+        width: 500px;
       }
       div {
-        font-size: 30px;
+        font-size: 60px;
+      }
+      #final-txt {
+        padding: 20px;
       }
     </style>
 
@@ -70,7 +80,7 @@
         });
 
         document.getElementById("final-txt").innerText =
-          Math.floor(finalPoints);
+          "Final war points: " + Math.floor(finalPoints);
       }
     </script>
   </head>
@@ -88,26 +98,26 @@
       </header>
       <header>
         <select id="p1-bonus">
-          <option value="0">x0</option>
+          <option value="0">No bonus</option>
           <option value="1.6">x1.6</option>
           <option value="3">x3</option>
           <option value="5">x5</option>
         </select>
         <select id="p2-bonus">
-          <option value="0">x0</option>
+          <option value="0">No bonus</option>
           <option value="1.6">x1.6</option>
           <option value="3">x3</option>
           <option value="5">x5</option>
         </select>
         <select id="p3-bonus">
-          <option value="0">x0</option>
+          <option value="0">No bonus</option>
           <option value="1.6">x1.6</option>
           <option value="3">x3</option>
           <option value="5">x5</option>
         </select>
       </header>
       <header>
-        <button onclick="clickFunc()">CALCULATE</button>
+        <button onclick="clickFunc()">calculate</button>
       </header>
       <header>
         <div id="final-txt"></div>
